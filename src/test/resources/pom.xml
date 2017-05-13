@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<packaging>war</packaging>
+	
+	<groupId>br.gov.mpdft</groupId>
+	<artifactId>TemisArtifactId</artifactId>
+	<version>1.24.0.0-SNAPSHOT</version>
+	
+	<name>temis</name>
+	<url>http://maven.apache.org</url>
+	<organization>
+		<name>MPDFT</name>
+		<url>http://www.mpdft.gov.br</url>
+	</organization>
+	<developers>
+		<developer>
+			<name>Tiago Costa Silva</name>
+			<id>tiago.costa</id>
+			<email>tiago.costa@mpdft.org.br</email>
+			<organization>
+				Minstério Público do Distrito Federal e Territórios
+			</organization>
+		</developer>
+		<developer>
+			<name>Linaria Lima</name>
+			<id>linaria.lima</id>
+			<email>linaria.lima@mpdft.org.br</email>
+			<organization>
+				Minstério Público do Distrito Federal e Territórios
+			</organization>
+		</developer>
+		<developer>
+			<id>Diogo Sant'ana</id>
+			<name>diogo.santana</name>
+			<email>diogo.santana@mpdft.gov.br</email>
+			<organization>MPDFT</organization>
+			<organizationUrl>http://www.mpdft.gov.br</organizationUrl>
+		</developer>
+		<developer>
+			<id>Jorge Santos</id>
+			<name>jorge.santos</name>
+			<email>jorge.santos@mpdft.gov.br</email>
+			<organization>MPDFT</organization>
+			<organizationUrl>http://www.mpdft.gov.br</organizationUrl>
+		</developer>
+		<developer>
+			<id>Renato Silva</id>
+			<name>renato.silva</name>
+			<email>renato.silva@mpdft.gov.br</email>
+			<organization>MPDFT</organization>
+			<organizationUrl>http://www.mpdft.gov.br</organizationUrl>
+		</developer>
+		<developer>
+			<id>Lisandro Jordao</id>
+			<name>lisandro.jordao</name>
+			<email>lisandro.jordao@mpdft.gov.br</email>
+			<organization>MPDFT</organization>
+			<organizationUrl>http://www.mpdft.gov.br</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:svn:https://svn.mpdft.gov.br/svn/temis/trunk/Fontes</connection>
+		<developerConnection>scm:svn:https://svn.mpdft.gov.br/svn/temis/trunk/Fontes</developerConnection>
+		<url>https://svn.mpdft.gov.br/svn/temis/trunk/Fontes</url>
+	</scm>
+		
+	<dependencies>
+		<!-- XStream -->
+	    <dependency>
+	    	<groupId>com.thoughtworks.xstream</groupId>
+	    	<artifactId>xstream</artifactId>
+	    	<version>1.3.1</version>
+	    </dependency>
+	    		
+		<!-- Google GSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<!-- Java Mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- MPDFT Auditoria Hibernate -->
+		<dependency>
+			<groupId>br.gov.mpdft.utils</groupId>
+			<artifactId>util-auditoria-hibernate</artifactId>
+			<version>1.0.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- MPDFT Apresentação -->
+		<dependency>
+			<groupId>br.gov.mpdft.apresentacao</groupId>
+			<artifactId>mpdft-apresentacao</artifactId>
+			<version>1.1.28</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>				
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>br.gov.mpdft.corporativo</groupId>
+					<artifactId>corporativo-negocio</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- MPDFT Corporativo Hibernate -->
+		<!-- Avaliar criar uma exclusion para o ibatis  -->
+		<dependency>
+			<groupId>br.gov.mpdft.corporativo</groupId>
+			<artifactId>corporativo-hibernate</artifactId>
+			<version>1.0.15</version>
+		</dependency>
+
+		<!-- Spring Framework -->		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>1.2.4</version>
+			<exclusions>
+				<!-- Excluindo velocity 1.4 (conflita com o 1.7, trazido por mpdft-apresentacao) -->
+                <exclusion>
+                    <groupId>velocity</groupId>
+                    <artifactId>velocity</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>freemarker</groupId>
+                    <artifactId>freemarker</artifactId>
+                </exclusion>
+			</exclusions>
+		</dependency>
+
+        <!-- MPDFT Util Web - ChangeThreadNameFilter -->
+        <dependency>
+            <groupId>br.gov.mpdft.utils</groupId>
+            <artifactId>util-web</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
+        <!-- MPDFT Util -->
+        <dependency>
+            <!-- Pra forçar o uso dessa versão -->
+            <groupId>br.gov.mpdft.utils</groupId>
+            <artifactId>util</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        
+        <!-- Servlet e JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- MessAdmin -->
+		<dependency>
+			<groupId>net.sourceforge.messadmin</groupId>
+			<artifactId>MessAdmin-Core</artifactId>
+			<version>4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.messadmin</groupId>
+			<artifactId>MessAdmin-SessionKiller</artifactId>
+			<version>4.0</version>
+		</dependency>
+		
+		<!-- DOM4J -->			
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Log4J - Lib acrescentada pq deu pau de compilação... provavelmente usou-se esta lib só na 0.19.11 -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+		
+		<!-- FunctionalJ -->
+		<dependency>
+			<groupId>info.javelot</groupId>
+			<artifactId>functionalj</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<!-- Jboss-common (t.0.19.10) -->
+		<dependency>
+			<groupId>temis</groupId>
+			<artifactId>jboss-common</artifactId>
+			<version>t.0.19.10</version>
+		</dependency>
+		
+		<!-- OSCache - ninguém está usando e o projeto está descontinuado desde 2007. Apaguei. (Diogo) -->
+		<!--
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>oscache</artifactId>
+			<version>2.1</version>
+		</dependency>
+		-->
+		
+		<!-- Xerces impl - Dependência do Spring. Apaguei. (Diogo) -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+		
+		<!-- Commons logging - Atualizada versão de 1.1 para 1.1.1 (Diogo) -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<!-- pjl-comp-filter (t0.19.10) - CompressingFilter usado no web.xml
+										  Verificar a posibilidade de habilitar o do container (jboss) -->
+		<dependency>
+			<groupId>temis</groupId>
+			<artifactId>pjl-comp-filter-1.4.4</artifactId>
+			<version>t0.19.10</version>
+		</dependency>
+		
+		<!-- iReport -->
+		<!-- Avaliar deixar fixas as dependências do ireport, uma vez que ele define apenas versão mínima -->
+		<dependency>
+			<groupId>it.businesslogic.ireport</groupId>
+			<artifactId>ireport</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		
+		<!-- Barbecue - usado para gerar imagem de barcode no iReport -->
+		<dependency>
+		  <groupId>net.sourceforge.barbecue</groupId>
+		  <artifactId>barbecue</artifactId>
+		  <version>1.1</version>
+		</dependency>
+		
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.0</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- DBUnit -->
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.3</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- SLF4J - API de log -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.5.6</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.7</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Jtds -->
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- MPDFT Menu -->
+		<dependency>
+			<groupId>br.gov.mpdft</groupId>
+			<artifactId>menu</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<!-- Commons IO -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<!-- RESTEasy -->		
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.3.3.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-multipart-provider</artifactId>
+			<version>2.3.3.Final</version>
+		</dependency>
+		            
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>2.3.3.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.mpdft.utils</groupId>
+			<artifactId>util-spring</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+    </dependencies>
+
+	<build>
+		<finalName>${war.name}</finalName>
+		
+        <resources>
+            <resource><directory>src/main/resources</directory></resource>
+            <resource><directory>target/hibernate</directory></resource>
+            <resource><directory>target/jasperreports</directory></resource>
+        </resources>
+		
+		<testResources>
+            <!-- Copia todo mundo, substituindo (filtering) -->
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+				<filtering>true</filtering>
+            </testResource>
+            <!--
+            [ERROR] Failed to execute goal org.apache.maven.plugins:maven-eclipse-plugin:2.8:eclipse (default-cli) on project
+            temis: Request to merge when 'filtering' is not identical. Original=resource src/test/resources:
+            output=target/test-classes, include=[], exclude=[**/*.java], test=true, filtering=false, merging with=resource
+            src/test/resources: output=target/test-classes, include=[tomcat/tomcat5/context.xml], exclude=[**/*.java], test=true,
+            filtering=true
+
+            // Copia só context.xml, substituindo (filtering)
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>
+						tomcat/tomcat${tomcat.version}/context.xml
+					</include>
+				</includes>
+			</testResource>
+            -->
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/jboss</directory>
+							<targetPath>WEB-INF</targetPath>
+							<includes>
+								<include>jboss-web.xml</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+						<!--
+						     O do Tomgato está em src/test/resources. Assim ele está disponível em tempo
+						     de execução para o desenvolvedor que roda pelo plugin do Eclipse,
+						     mas não é empacotado. Quem é empacotado é o do JBoss:
+						-->
+						<resource>
+							<directory>src/main/jboss</directory>
+							<targetPath>/</targetPath>
+							<includes>
+								<include>StaticResources.properties</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+						<resource>
+							<directory>src/test/resources/tomcat/tomcat${tomcat.version}</directory>
+							<targetPath>META-INF</targetPath>
+							<includes>
+								<include>context.xml</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>ISO-8859-1</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>srcjar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<inherited>false</inherited>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<projectNameTemplate>${project.artifactId}</projectNameTemplate>
+					<wtpversion>2.0</wtpversion>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<additionalConfig>
+						<file>
+							<name>.springBeans</name>
+							<content>
+								<![CDATA[
+									<beansProjectDescription>
+										<version>1</version>
+										<configs>
+											<config>src/main/resources/br/gov/mpdft/temis/config/pit-spring.xml</config>											
+											<config>src/main/resources/br/gov/mpdft/temis/config/temis-spring.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/Consulta.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/ConsultaParametrizadaOrgaoOrigem.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/ConsultaTipoNumeroRelacionado.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/GrupoRedistribuicao.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/NumeroRelacionado.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/OrgaoEncaminhamento.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/OrgaoResponsavel.xml</config>
+											<config>src/main/resources/br/gov/mpdft/temis/config/beans/TipoNumeroRelacionado.xml</config>
+										</configs>
+										<configSets>
+										</configSets>
+									</beansProjectDescription>]]>
+							</content>
+						</file>
+					</additionalConfig>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sysdeo-tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<contextDefinition>
+						${basedir}/target/test-classes/tomcat/tomcat${tomcat.version}/context.xml
+					</contextDefinition>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin-version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>xdoclet</groupId>
+						<artifactId>xdoclet</artifactId>
+						<version>2.0.3</version>
+						<exclusions>
+							<exclusion>
+								<groupId>commons-jelly</groupId>
+								<artifactId>commons-jelly</artifactId>
+							</exclusion>
+							<exclusion>
+								<groupId>freemarker</groupId>
+								<artifactId>freemarker</artifactId>
+							</exclusion>
+							<exclusion>
+								<groupId>picocontainer</groupId>
+								<artifactId>picocontainer-tck</artifactId>
+							</exclusion>
+							<exclusion>
+								<groupId>picocontainer</groupId>
+								<artifactId>picocontainer</artifactId>
+							</exclusion>
+							<exclusion>
+								<groupId>qdox</groupId>
+								<artifactId>qdox</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>xdoclet-plugins</groupId>
+						<artifactId>xdoclet-plugin-hibernate</artifactId>
+						<version>1.0.2</version>
+					</dependency>
+					<dependency>
+						<groupId>commons-jelly</groupId>
+						<artifactId>commons-jelly</artifactId>
+						<version>1.0-RC2</version>
+					</dependency>
+					<dependency>
+						<groupId>freemarker</groupId>
+						<artifactId>freemarker</artifactId>
+						<version>2.3.1</version>
+					</dependency>
+					<dependency>
+						<groupId>picocontainer</groupId>
+						<artifactId>picocontainer-tck</artifactId>
+						<version>1.0</version>
+					</dependency>
+					<dependency>
+						<groupId>picocontainer</groupId>
+						<artifactId>picocontainer</artifactId>
+						<version>1.0</version>
+					</dependency>
+					<dependency>
+						<groupId>qdox</groupId>
+						<artifactId>qdox</artifactId>
+						<version>1.6</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>generateHibernateHBM</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>Generating Hibernate HBM to: target/hibernate</echo>
+								<taskdef name="xdoclet2" classname="org.xdoclet.ant.XDocletTask" />
+								<xdoclet2>
+									<!-- Define os arquivos para os quais serão gerados os hbm-->
+									<fileset dir="${project.build.sourceDirectory}">
+										<include name="**/domain/**/*.java" />
+										<exclude name="**/testes/**" />
+									</fileset>
+									<!-- Define o plugin que fará a geração -->
+									<component classname="org.xdoclet.plugin.hibernate.HibernateMappingPlugin" destdir="target/hibernate" version="3.0" />
+								</xdoclet2>
+							</tasks>
+							<sourceRoot>${project.build.sourceDirectory}</sourceRoot>
+							<testSourceRoot>${project.build.testSourceDirectory}</testSourceRoot>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jasperreports-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<executions>
+					<execution>
+						<id>jasperreports</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile-reports</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outputDirectory>${project.build.directory}/classes/reports</outputDirectory>
+					<sourceFileExt>.xml</sourceFileExt>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>jasperreports</groupId>
+						<artifactId>jasperreports</artifactId>
+						<version>1.3.3</version>
+						<exclusions>
+							<exclusion>
+								<groupId>bouncycastle</groupId>
+								<artifactId>bctsp-jdk14</artifactId>
+							</exclusion>							
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+						<version>1.1</version>
+					</dependency>
+					<dependency>
+						<groupId>commons-collections</groupId>
+						<artifactId>commons-collections</artifactId>
+						<version>3.2.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+				<configuration>
+					<tagBase>https://svn.mpdft.gov.br/svn/temis/tags</tagBase>
+					<connectionUrl>${project.scm.developerConnection}</connectionUrl>
+					<useReleaseProfile>false</useReleaseProfile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.google.code.maven-scm-provider-svnjava</groupId>
+						<artifactId>maven-scm-provider-svnjava</artifactId>
+						<version>1.4</version>
+						<exclusions>
+							<exclusion>
+								<groupId>net.java.dev.jna</groupId>
+								<artifactId>jna</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<format>{0,date,yyyyMMddHHmm}</format>
+					<items>
+						<item>timestamp</item>
+					</items>
+					<doCheck>true</doCheck>
+					<doUpdate>true</doUpdate>
+				</configuration>
+			</plugin>
+			
+			<!-- ==========================================
+			       exportMenu
+			
+			       Para rodar: "mvn exec:exec"
+			========================================== -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1</version> <!-- só nessa versão <outputFile> funciona vide http://jira.codehaus.org/browse/MEXEC-86 -->
+				<configuration>
+					<executable>java</executable>
+					<classpathScope>test</classpathScope> <!-- o escopo de 'menu.jar' é test -->
+					<arguments>
+						<argument>-cp</argument>
+						
+						<classpath>
+                            <dependency>br.gov.mpdft:menu</dependency>
+                            <dependency>br.gov.mpdft.utils:util</dependency>
+                        </classpath>
+                        
+						<argument>br.gov.mpdft.temis.view.ThemisMenuExporter</argument>
+					</arguments>
+					<outputFile>ExportedMenu.java</outputFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<!-- Valores default (para todos os profiles) -->
+	<properties>
+	    <context.root.prefix>/sistemas/java</context.root.prefix>	
+	    <imagemFundo>fundo.png</imagemFundo>
+		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+		
+		<!-- maven-ant-plugin - não da para usar maior porque gera conflito com o ant 1.5 (dependência do spring 1.2.4) -->
+		<maven-antrun-plugin-version>1.2</maven-antrun-plugin-version>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>desenvolvimento</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<war.name>temis</war.name>
+				<context.root>${context.root.prefix}/temis</context.root>
+				<resourcesUrl>${context.root.prefix}/temisResources</resourcesUrl>
+				<tomcat.version>6</tomcat.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>producao</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<war.name>temis_producao-${project.version}-${buildNumber}</war.name>
+				<context.root>${context.root.prefix}/temis</context.root>
+			    <resourcesUrl>${context.root.prefix}/temisResources</resourcesUrl>
+				<tomcat.version>6</tomcat.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>homologacao</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<war.name>temis_homologacao-${project.version}-${buildNumber}</war.name>
+				<context.root>${context.root.prefix}/temisHomologacao</context.root>
+			    <resourcesUrl>${context.root.prefix}/temisHomologacaoResources</resourcesUrl>
+				<tomcat.version>6</tomcat.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>treinamento</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<war.name>temis_treinamento-${project.version}-${buildNumber}</war.name>
+				<context.root>${context.root.prefix}/temisTreinamento</context.root>
+				<resourcesUrl>${context.root.prefix}/temisTreinamentoResources</resourcesUrl>
+				<tomcat.version>6</tomcat.version>
+			</properties>
+		</profile>
+	</profiles>
+	<distributionManagement>
+		<repository>
+			<id>VersoesAcabadas</id>
+			<name>VersoesAcabadas</name>
+			<url>
+				http://nexus.mpdft.gov.br:8081/nexus/content/repositories/releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>VersoesInacabadas</id>
+			<name>VersoesInacabadas</name>
+			<url>
+				http://nexus.mpdft.gov.br:8081/nexus/content/repositories/snapshots
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

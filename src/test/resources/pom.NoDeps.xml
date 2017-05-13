@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>br.gov.mpdft.maven</groupId>
+        <artifactId>super-pom</artifactId>
+        <version>1</version>
+    </parent>
+    
+	<groupId>br.gov.mpdft.utils</groupId>
+	<artifactId>util</artifactId>
+	<version>1.1.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>util</name>
+	<url>http://maven.apache.org</url>
+	<description>
+		Simples mavenização do antigo projeto MPDFTUtil. O MPDFTUtil
+		contém as classes utilitárias, independente de tecnologia,
+		podendo ser usada em qualquer tipo de projeto.
+	</description>
+	<organization>
+		<name>MPDFT</name>
+		<url>http://www.mpdft.gov.br</url>
+	</organization>
+	<scm>
+		         <connection>scm:svn:https://svn.mpdft.gov.br/svn/Infra/utils/util/trunk/util</connection>
+		<developerConnection>scm:svn:https://svn.mpdft.gov.br/svn/Infra/utils/util/trunk/util</developerConnection>
+		                        <url>https://svn.mpdft.gov.br/svn/Infra/utils/util/trunk/util</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Daniel Pedroso</name>
+			<id>danielpedroso</id>
+			<email>daniel.pedroso@mpdft.org.br</email>
+			<organization>
+				Minstério Público do Distrito Federal e Territórios
+			</organization>
+		</developer>
+		<developer>
+			<name>Thiago F. G. Albuquerque</name>
+			<id>tfga</id>
+			<email>tfga@mpdft.org.br</email>
+			<organization>
+				Minstério Público do Distrito Federal e Territórios
+			</organization>
+		</developer>
+	</developers>
+	
+	<build>
+		<plugins>
+
+		    <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>ISO-8859-1</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.8</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+            
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0-beta-7</version>
+				<configuration>
+					<useReleaseProfile>false</useReleaseProfile>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

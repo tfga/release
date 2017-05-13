@@ -1,0 +1,11 @@
+
+#
+# Configure aqui onde a parada deve ser instalada.
+# 
+
+# Unix-like
+# install.dir = ${env.HOME}/lib/release
+
+# PerebOS
+install.dir = C:\\Program Files\\release
+
