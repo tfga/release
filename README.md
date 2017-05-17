@@ -25,3 +25,34 @@ As a result, where I work people simply didn't use it. `maven-release-plugin` to
 
 If anything bad happens, it rolls back the stuff it has to in the same way. Tags created get deleted; modifications made to `pom.xml` are reverted.
 
+## Usage
+
+This is not a Maven plug-in: it's an application.
+
+    release <maven args>
+
+`release` has no arguments of its own. Everything you pass to it will be forwarded to Maven.
+
+## Requirements
+
+`svn` (CLI) and `mvn` must be on `$PATH`.
+
+## Installation
+
+1. Create `install.properties`:
+
+       cp install.properties.example install.properties
+
+   Change the value of `install.dir` to the directory where you want `release` to be installed (on Windows: backslashes (`\`) must be escaped (`\\`).
+
+   `install.dir` must exist. If it doesn't, please create it or the install script will fail.
+
+2. Run
+
+       ./install    # Unix-like
+
+   or
+
+       install      # Windows
+
+3. Add `${install.dir}/bin` to `$PATH`.
