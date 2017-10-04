@@ -1,6 +1,7 @@
 package br.gov.mpdft.tools.release;
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.gov.mpdft.tools.release.Svn;
@@ -45,6 +46,8 @@ public class SvnTest
     }
     
     @Test
+    @Ignore // only worked when the code was in SVN
+            // *and* the WC was dirty
     public void checkForLocalModifications()
     {
         try
@@ -53,7 +56,7 @@ public class SvnTest
         
             svn.checkForLocalModifications();
             
-            fail("Deveria ter lançado exceção");
+            fail("Deveria ter lanÃ§ado exceÃ§Ã£o");
         }
         catch (LocalModificationsException e)
         {

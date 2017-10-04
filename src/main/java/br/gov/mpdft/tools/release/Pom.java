@@ -49,11 +49,16 @@ public class Pom
 
     public void save()
     {
+        save(filename);
+    }
+
+    public void save(String filename)
+    {
         try
         {
             // Tenho que fazer isso pq
             // sen�o ele converte para ISO-xxxx-1
-            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(this.filename), doc.getEncoding());
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filename), doc.getEncoding());
             
             doc.toXML(new XMLWriter(writer));
             

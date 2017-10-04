@@ -56,7 +56,7 @@ public class PomTest
         
         pom.read();
 
-        pom.save();
+        pom.save(targetPom);
         
         //  Os dois arquivos devem ser iguais
         assertEquals(0, LibC.system(String.format("diff -q '%s' '%s'", sourcePom, targetPom)));
