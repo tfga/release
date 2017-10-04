@@ -21,7 +21,7 @@ public class PomTest
     }
     
     static String sourcePom          = testResource("pom.xml");
-    static String targetPom          = testResource("pomNew.xml");
+    static String targetPom          = "target/pomNew.xml";
     static String pomComSnapshots    = testResource("pom.SNAPSHOTs.xml");
     static String pomIlegal          = testResource("pom.ilegal.xml");
     static String pomComSuperPom     = testResource("pom.SuperPom.xml");
