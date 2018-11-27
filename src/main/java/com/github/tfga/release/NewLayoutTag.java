@@ -4,7 +4,6 @@ import static com.github.underscore.U.join;
 import static java.util.Arrays.asList;
 
 import com.github.tfga.release.exceptions.InvalidProjectLayoutException;
-import com.github.underscore.Predicate;
 import com.github.underscore.U;
 
 public class NewLayoutTag extends Tag
@@ -14,14 +13,7 @@ public class NewLayoutTag extends Tag
         String[] pathElems = url.split("/");
         
         // acha a última ocorrência de "trunk" ou "branches"
-        int i = rindex(pathElems, new Predicate<String>()
-        {
-            @Override
-            public boolean test(String s)
-            {
-                return s.equals("trunk") || s.equals("branches");
-            }
-        });
+        int i = rindex(pathElems, s -> s.equals("trunk") || s.equals("branches"));
         
         if (i == -1)
             throw new InvalidProjectLayoutException(url);

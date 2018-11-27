@@ -2,8 +2,6 @@ package com.github.tfga.release;
 
 import static com.github.tfga.release.os.Util.joinAndQuote;
 
-import com.github.tfga.release.util.Callback0;
-
 public class StandardProcedure extends BaseProcedure
 {
     @Override
@@ -17,14 +15,7 @@ public class StandardProcedure extends BaseProcedure
         pom.setProjectVersion(closedVersion);
         pom.save();
         
-        undoStack.push(new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                closeVersionUndo(pom.getFilename());
-            }
-        });
+        undoStack.push(() -> closeVersionUndo(pom.getFilename()));
         
         fakeExceptionPoint1();
         
@@ -37,14 +28,7 @@ public class StandardProcedure extends BaseProcedure
         os.system(String.format("svn cp . %s -m \"[release] Creating tag '%s'\"", tagUrl, tagName));
         
         final String finalTagUrl = tagUrl;
-        undoStack.push(new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                createTagUndo(tagName, finalTagUrl);
-            }
-        });
+        undoStack.push(() -> createTagUndo(tagName, finalTagUrl));
         
         fakeExceptionPoint2();
         

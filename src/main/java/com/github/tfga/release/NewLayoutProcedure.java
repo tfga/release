@@ -4,8 +4,6 @@ import static com.github.tfga.release.os.Util.joinAndQuote;
 
 import java.util.List;
 
-import com.github.tfga.release.util.Callback0;
-
 public class NewLayoutProcedure extends BaseProcedure
 {
     @Override
@@ -22,14 +20,7 @@ public class NewLayoutProcedure extends BaseProcedure
         pom.setProjectVersion(closedVersion);
         pom.save();
         
-        undoStack.push(new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                revert(pom.getFilename());
-            }
-        });
+        undoStack.push(() -> revert(pom.getFilename()));
         
         // Package (war) ou deploy (jar)
         build(buildCommand, params);
@@ -37,17 +28,12 @@ public class NewLayoutProcedure extends BaseProcedure
         // Commit
         ProcUtil.commitVersionChange(os, pom, oldVersion, closedVersion);
         
-        undoStack.push(new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                // Muda a versão de volta
-                pom.setProjectVersion(oldVersion);
-                pom.save();
+        undoStack.push(() -> {
+            // Muda a versão de volta
+            pom.setProjectVersion(oldVersion);
+            pom.save();
 
-                ProcUtil.revertVersionChange(os, pom, oldVersion, closedVersion);
-            }
+            ProcUtil.revertVersionChange(os, pom, oldVersion, closedVersion);
         });
         
         fakeExceptionPoint1(); // aqui?
@@ -56,14 +42,7 @@ public class NewLayoutProcedure extends BaseProcedure
         createTag(url, projectName, closedVersion);
         
         final String finalTagUrl = tagUrl;
-        undoStack.push(new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                rmTag(tagName, finalTagUrl);
-            }
-        });
+        undoStack.push(() -> rmTag(tagName, finalTagUrl));
         
         fakeExceptionPoint2();
     }

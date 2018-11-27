@@ -18,23 +18,9 @@ public class UndoStackTest
     {
         final ArrayList<Integer> log = new ArrayList<Integer>();
         
-        Callback0 undoAction1 = new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                log.add(1);
-            }
-        };
+        Callback0 undoAction1 = () -> log.add(1);
         
-        Callback0 undoAction2 = new Callback0()
-        {
-            @Override
-            public void execute()
-            {
-                log.add(2);
-            }
-        };
+        Callback0 undoAction2 = () -> log.add(2);
         
         UndoStack undoStack = new UndoStack();
         undoStack.push(undoAction1);

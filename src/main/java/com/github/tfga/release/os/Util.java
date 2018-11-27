@@ -11,8 +11,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.github.tfga.release.util.Formatter;
-
 
 public class Util
 {
@@ -125,13 +123,6 @@ public class Util
     
     public static String joinAndQuote(List<String> args)
     {
-        return join(args, " ", new Formatter<String>()
-        {
-            @Override
-            public String format(String s)
-            {
-                return quote(s);
-            }
-        });
+        return join(args, " ", Util::quote);
     }
 }

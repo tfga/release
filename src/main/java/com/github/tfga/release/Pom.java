@@ -106,14 +106,7 @@ public class Pom
         boolean constainsDeps = dependeciesElem != null;
 
         if (constainsDeps) {
-            List<Element> snapshotDeps = filter(dependeciesElem.getChildren(), new Predicate<Element>()
-            {
-                @Override
-                public boolean test(Element dep)
-                {
-                    return isSnapshotDependency(dep, allowsEmptyVersion);
-                }
-            });
+            List<Element> snapshotDeps = filter(dependeciesElem.getChildren(), (Predicate<Element>) dep -> isSnapshotDependency(dep, allowsEmptyVersion));
 
             if (!snapshotDeps.isEmpty())
                 throw new SnapshotDependenciesException(snapshotDeps);
