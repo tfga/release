@@ -1,5 +1,9 @@
 package com.github.tfga.release.os;
 
+import static com.github.tfga.release.util.StringUtils.join;
+import static com.github.underscore.U.join;
+import static java.lang.String.format;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,8 +11,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import br.gov.mpdft.util.string.Formatter;
-import br.gov.mpdft.util.string.StringUtils;
+import com.github.tfga.release.util.Formatter;
 
 
 public class Util
@@ -70,29 +73,29 @@ public class Util
         }
         catch (InterruptedException e)
         {
-            throw new RuntimeException(StringUtils.F("Processo interrompido: '%s'", joinTokens(tokens)), e);
+            throw new RuntimeException(format("Processo interrompido: '%s'", joinTokens(tokens)), e);
         }
         catch (IOException e)
         {
 //            e.printStackTrace();
             
-            throw new RuntimeException(StringUtils.F("Erro ao executar '%s'", joinTokens(tokens)), e);
+            throw new RuntimeException(format("Erro ao executar '%s'", joinTokens(tokens)), e);
         }
     }
     
     static String joinTokens(String... tokens)
     {
-        return StringUtils.toStringEntreVirgulas(Arrays.asList(tokens), " ");
+        return join(Arrays.asList(tokens), " ");
     }
     
     public static String joinLines(List<String> lines)
     {
-        return StringUtils.toStringEntreVirgulas(lines, "\n");
+        return join(lines, "\n");
     }
 
     static <T> void print(T[] tokens)
     {
-        String line = StringUtils.toStringEntreVirgulas(Arrays.asList(tokens), " ");
+        String line = join(Arrays.asList(tokens), " ");
         System.out.println(line);
     }
     
@@ -117,12 +120,12 @@ public class Util
         /*
          * Tem que ser com double quotes: no Windows só funciona assim.
          */
-        return String.format("\"%s\"", s);
+        return format("\"%s\"", s);
     }
     
     public static String joinAndQuote(List<String> args)
     {
-        return StringUtils.toStringEntreVirgulas(args, " ", new Formatter<String>()
+        return join(args, " ", new Formatter<String>()
         {
             @Override
             public String format(String s)

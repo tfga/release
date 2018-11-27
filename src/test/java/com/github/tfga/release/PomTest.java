@@ -168,11 +168,19 @@ public class PomTest
             
             pom.checkForSnapshotDeps();
             
-            Assert.fail("Devia ter lan�ado exce��o");
+            Assert.fail("Should have thrown an exception");
         }
         catch (SnapshotDependenciesException e)
         {
             System.out.println(e.getMessage());
+            
+            assertEquals( "Snapshot dependencies found:\n" 
+                        + "\n"
+                        + "mpdft-apresentacao-1.1.28-SNAPSHOT\n"
+                        + "corporativo-hibernate-1.0.15-SNAPSHOT" 
+                        
+                        , e.getMessage()
+                        );
         }
     }
     

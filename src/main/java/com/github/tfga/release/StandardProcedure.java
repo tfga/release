@@ -2,7 +2,7 @@ package com.github.tfga.release;
 
 import static com.github.tfga.release.os.Util.joinAndQuote;
 
-import br.gov.mpdft.util.Callback0;
+import com.github.tfga.release.util.Callback0;
 
 public class StandardProcedure extends BaseProcedure
 {

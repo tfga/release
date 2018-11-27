@@ -4,7 +4,7 @@ import static com.github.tfga.release.os.Util.joinAndQuote;
 
 import java.util.List;
 
-import br.gov.mpdft.util.Callback0;
+import com.github.tfga.release.util.Callback0;
 
 public class NewLayoutProcedure extends BaseProcedure
 {

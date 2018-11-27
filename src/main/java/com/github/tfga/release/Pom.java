@@ -1,5 +1,8 @@
 package com.github.tfga.release;
 
+import static com.github.underscore.U.filter;
+import static com.github.underscore.U.join;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,10 +12,10 @@ import java.util.List;
 
 import com.github.tfga.release.exceptions.PomSemEncodingException;
 import com.github.tfga.release.exceptions.SnapshotDependenciesException;
+import com.github.tfga.release.util.StringUtils;
+import com.github.underscore.Predicate;
+import com.github.underscore.U;
 
-import br.gov.mpdft.util.list.ListUtils;
-import br.gov.mpdft.util.list.Predicate;
-import br.gov.mpdft.util.string.StringUtils;
 import de.pdark.decentxml.Document;
 import de.pdark.decentxml.Element;
 import de.pdark.decentxml.XMLParser;
@@ -103,10 +106,10 @@ public class Pom
         boolean constainsDeps = dependeciesElem != null;
 
         if (constainsDeps) {
-            List<Element> snapshotDeps = ListUtils.filter(dependeciesElem.getChildren(), new Predicate<Element>()
+            List<Element> snapshotDeps = filter(dependeciesElem.getChildren(), new Predicate<Element>()
             {
                 @Override
-                public boolean predicate(Element dep)
+                public boolean test(Element dep)
                 {
                     return isSnapshotDependency(dep, allowsEmptyVersion);
                 }
@@ -163,7 +166,7 @@ public class Pom
         
         numbers[last] = incIntString(numbers[last]);
         
-        return StringUtils.toStringEntreVirgulas(Arrays.asList(numbers), ".");
+        return join(Arrays.asList(numbers), ".");
     }
 
     static String incIntString(String lastNumber)

@@ -1,13 +1,14 @@
 package com.github.tfga.release;
 
-import static br.gov.mpdft.util.string.StringUtils.toStringEntreVirgulas;
+import static com.github.underscore.U.join;
 import static java.util.Arrays.asList;
 
 import java.util.Arrays;
 
 import com.github.tfga.release.exceptions.InvalidProjectLayoutException;
+import com.github.underscore.Predicate;
+import com.github.underscore.U;
 
-import br.gov.mpdft.util.list.Predicate;
 
 
 public class Tag
@@ -20,7 +21,7 @@ public class Tag
         int i = rindex(pathElems, new Predicate<String>()
         {
             @Override
-            public boolean predicate(String s)
+            public boolean test(String s)
             {
                 return s.equals("trunk") || s.equals("branches");
             }
@@ -34,7 +35,7 @@ public class Tag
         // Despreza tudo o que vem depois
         pathElems = copyUpTo(pathElems, i);
         
-        return toStringEntreVirgulas(asList(pathElems), "/");
+        return join(asList(pathElems), "/");
     }
 
     /**
@@ -83,7 +84,7 @@ public class Tag
         {
             T elem = array[i];
             
-            if (pred.predicate(elem))
+            if (pred.test(elem))
                 return i;
         }
         

@@ -2,7 +2,7 @@ package com.github.tfga.release;
 
 import java.util.ArrayDeque;
 
-import br.gov.mpdft.util.Callback0;
+import com.github.tfga.release.util.Callback0;
 
 public class UndoStack
 {

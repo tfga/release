@@ -1,11 +1,11 @@
 package com.github.tfga.release;
 
-import static br.gov.mpdft.util.string.StringUtils.toStringEntreVirgulas;
+import static com.github.underscore.U.join;
 import static java.util.Arrays.asList;
 
 import com.github.tfga.release.exceptions.InvalidProjectLayoutException;
-
-import br.gov.mpdft.util.list.Predicate;
+import com.github.underscore.Predicate;
+import com.github.underscore.U;
 
 public class NewLayoutTag extends Tag
 {
@@ -17,7 +17,7 @@ public class NewLayoutTag extends Tag
         int i = rindex(pathElems, new Predicate<String>()
         {
             @Override
-            public boolean predicate(String s)
+            public boolean test(String s)
             {
                 return s.equals("trunk") || s.equals("branches");
             }
@@ -37,6 +37,6 @@ public class NewLayoutTag extends Tag
             pathElems = copyUpTo(pathElems, i + 1);
         }
 
-        return toStringEntreVirgulas(asList(pathElems), "/");
+        return join(asList(pathElems), "/");
     }
 }

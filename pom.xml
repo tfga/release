@@ -29,9 +29,9 @@
         </dependency>
         
         <dependency>
-            <groupId>br.gov.mpdft.utils</groupId>
-            <artifactId>util</artifactId>
-            <version>1.0.4</version>
+            <groupId>com.github.javadev</groupId>
+            <artifactId>underscore</artifactId>
+            <version>1.38</version>
         </dependency>
 
 		<dependency>

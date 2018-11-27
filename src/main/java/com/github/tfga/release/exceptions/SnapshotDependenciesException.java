@@ -1,11 +1,13 @@
 package com.github.tfga.release.exceptions;
 
+import static com.github.tfga.release.util.StringUtils.join;
+import static com.github.underscore.U.chain;
+
 import java.util.List;
 
 import com.github.tfga.release.Pom;
+import com.github.tfga.release.util.StringUtils;
 
-import br.gov.mpdft.util.string.Formatter;
-import br.gov.mpdft.util.string.StringUtils;
 import de.pdark.decentxml.Element;
 
 public class SnapshotDependenciesException extends MensagemUsuarioException
@@ -21,13 +23,6 @@ public class SnapshotDependenciesException extends MensagemUsuarioException
     public String getMessage()
     {
         return "Snapshot dependencies found:\n\n" +
-               StringUtils.toStringEntreVirgulas(snapshotDeps, "\n", new Formatter<Element>()
-               {
-                   @Override
-                   public String format(Element dep)
-                   {
-                       return Pom.formatDependency(dep);
-                   }
-               });
+               join(snapshotDeps, "\n", Pom::formatDependency);
     }
 }

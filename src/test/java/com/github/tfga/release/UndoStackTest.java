@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import br.gov.mpdft.util.Callback0;
+import com.github.tfga.release.util.Callback0;
 
 
 
