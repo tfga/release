@@ -4,7 +4,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   
-  <groupId>br.gov.mpdft.tools</groupId>
+  <groupId>com.github.tfga</groupId>
   <artifactId>release</artifactId>
   <version>1.0-SNAPSHOT</version>
   
@@ -115,7 +115,7 @@
                     
                     <programs>
                         <program>
-                            <mainClass>br.gov.mpdft.tools.release.Main</mainClass>
+                            <mainClass>com.github.tfga.release.Main</mainClass>
                             <name>release</name>
                         </program>
                     </programs>
